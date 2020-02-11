@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Главная страница {% endblock %}
+
+{% block main %}
+
+<h3>Привет, {{user_name}}!</h3>
+<p>Вы находитесь на сайта автора блога "Я познаю Питон". Это приложение регистрации написанное на Django.</p>
+  {% if request.user.is_authenticated %}
+    <a href="{% url 'registration:logout' %}">Выйти</a>
+  {% else %}
+    <a href="{% url 'registration:login' %}">Войти</a>
+    <br>
+    <a href="{% url 'registration:register' %}">Зарегистрироваться</a>
+  {% endif %}
+{% endblock %}

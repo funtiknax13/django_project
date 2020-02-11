@@ -1,0 +1,36 @@
+{% extends  'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Регистрация {% endblock %}
+
+{% block main %}
+<div class="card">
+<div class="card-body">
+<h4 class="card-title">Регистрация</h4>
+<form method="POST" action="{% url 'registration:register' %}">
+
+{% csrf_token %}
+<input type="hidden" name="next" value="{{ next }}">
+
+<table>
+{% for field in form %}
+  <tr>
+      <td>  {{ field.label_tag }} </td>
+      <td>{{ field }}</td>
+  </tr>
+  <tr>
+    <td colspan="2">
+    {{ field.errors }}{{message}}
+    </td>
+  </tr>
+  <!-- <tr>
+  {% if field.help_text %}
+     <td colspan="2"><small> {{ field.help_text }}</small></td>
+  {% endif %}
+  </tr> -->
+{% endfor %}
+</table>
+<button type="submit" class="btn btn-primary btn-block" name='register'>Зарегистрироваться</button>
+</form>
+</div>
+</div>
+{% endblock %}
